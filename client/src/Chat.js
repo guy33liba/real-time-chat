@@ -12,6 +12,7 @@ const Chat = ({ socket, username, room }) => {
         time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes(),
       }
       await socket.emit("sendMessage", messageData)
+      setMessageList((list) => [...list, messageData])
     }
   }
   useEffect(() => {
@@ -28,11 +29,22 @@ const Chat = ({ socket, username, room }) => {
         </div>
 
         <div className="chat-body">
-          {messageList.map((item) => {
+          {messageList.map((messageContent) => {
             return (
-              <h3 key={item.id}>
-                {item.author} : {item.message} - {item.time}
-              </h3>
+              <div
+                className="message"
+                id={username === messageContent.author ? "you" : "other"}
+              >
+                <div>
+                  <div className="message-content">
+                    <p>{messageContent.message}</p>
+                  </div>
+                  <div className="message-meta">
+                    <p id="time">{messageContent.time}</p>
+                    <p id="author">{messageContent.author}</p>
+                  </div>
+                </div>
+              </div>
             )
           })}
         </div>
