@@ -9,7 +9,9 @@
   justify-content: center;
 }
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
-
+body {
+  overflow: hidden;
+}
 .joinChatContainer {
   display: flex;
   flex-direction: column;
@@ -131,7 +133,7 @@
 }
 
 #other .message-content {
-  justify-content: flex-end;
+  justify-content: flex-start;
   background-color: cornflowerblue;
 }
 

@@ -8,11 +8,16 @@ const App = () => {
   const [username, setUsername] = useState("")
   const [room, setRoom] = useState("")
   const [showChat, setShowChat] = useState(false)
-  
+
   const joinRoom = () => {
     if (username !== "" && room !== "") {
       socket.emit("joinRoom", room)
       setShowChat(true)
+    }
+  }
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      joinRoom()
     }
   }
   return (
@@ -23,12 +28,16 @@ const App = () => {
           <input
             type="text"
             placeholder="John..."
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
+            onKeyPress={handleKeyPress}
           />
           <input
             type="text"
             placeholder="Room ID..."
+            value={room}
             onChange={(e) => setRoom(e.target.value)}
+            onKeyPress={handleKeyPress}
           />
           <button
             onClick={() => {
