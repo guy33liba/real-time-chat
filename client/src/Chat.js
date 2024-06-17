@@ -28,11 +28,11 @@ const Chat = ({ socket, username, room }) => {
         </div>
 
         <div className="chat-body">
-          {messageList.map((messageContent) => {
+          {messageList.map((item) => {
             return (
-              <p key={item.id}>
-                {messageContent.author} : {messageContent.message} - {messageContent.time}
-              </p>
+              <h3 key={item.id}>
+                {item.author} : {item.message} - {item.time}
+              </h3>
             )
           })}
         </div>
